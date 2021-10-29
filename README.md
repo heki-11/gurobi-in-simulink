@@ -7,7 +7,9 @@ I was so frustrated that there was no clear step-by-step guide on how to use Gur
 
 1. Pre-requisites
 Because the Gurobi library doesn't support MinGW compiler, you need to download VS 2017 build tools if you have not already, using this link: https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads. Then, make this the default compiler in MATLAB by commanding:
-``` mex -v -setup C  ```
+```
+mex -v -setup C  
+```
 and select VS2017.
 
 2. Write a C-coded level 2 S function
@@ -23,10 +25,14 @@ In "Model Settings" --> "Simulation Target" --> "Additional build information", 
 
 4. MEX S-function
 Use this command in MATLAB:
-*  mex -'L{path of gurobi library} -lgurobi_c++mdd2017 -lgurobi91 {s function name}.c
+```
+mex -'L{path of gurobi library} -lgurobi_c++mdd2017 -lgurobi91 {s function name}.c
+```
 If compiled successfully, you will get the message:
-*  Building with 'Microsoft Visual C++ 2017 (C)'. *
-*  MEX completed successfully. *
+```
+Building with 'Microsoft Visual C++ 2017 (C)'.
+MEX completed successfully.
+```
 
 5. Generate Simulink model that uses S function
 Finally, you can use the "S function" block in Simulink that calls the S function. Write the S function name in the "Block Parameters" -> "S-function name" and run the model.
