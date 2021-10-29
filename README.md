@@ -17,14 +17,14 @@ and select VS2017.
 
 A template of S function can be found here: https://www.mathworks.com/help/simulink/sfg/templates-for-c-s-functions.html. Below is what you need to do:
   - change function name in #define S_FUNCTION_NAME
-  - include #include <stdlib.h>, <stdio.h>, <math.h>, and "gurobi_c.h" (assuming you have gurobi_c.h in the same directory as the S function)
-  - in mdlOutputs, that is where you can call Gurobi libraries like GRBenv, GRBemptyenv, etc. Assign y accordingly.
+  - include appropriate headers, i.e., #include <stdlib.h>, <stdio.h>, <math.h>, and "gurobi_c.h" (assuming you have gurobi_c.h in the same directory as the S function)
+  - in mdlOutputs, that is where you can call Gurobi libraries like GRBenv, GRBemptyenv, etc. Assign output accordingly.
 
 **3. Configure Simulink**
 
-In "Model Settings" --> "Simulation Target" --> "Additional build information", you need to:
+In Simulink, go to "Model Settings" --> "Simulation Target" --> "Additional build information". Then, you need to:
   - include the path of the Gurobi library inside quotation marks "" in "Include directories"
-  - Include gurobi_c++mdd2017.dll (or whatever version of VS you are using) and gurobi91.lib
+  - Include gurobi_c++mdd2017.dll (or whatever version of VS you are using) and gurobi91.lib in "Libraries"
 
 **4. MEX S-function**
 
