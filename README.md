@@ -3,7 +3,7 @@
             By Heejin Kim (heejink@umich.edu)                      
 *******************************************************************
 
-I was so frustrated that there was no clear step-by-step guide on how to use Gurobi libraries in Simulink on anywhere in the Internet (for hardware implementation settings). After spending whole 3 days, I just created a guide myself. So here it is.
+I was so frustrated that there was no clear step-by-step guide on how to use Gurobi libraries in Simulink in anywhere on the Internet (for hardware implementation settings). After spending three whole days, I just created a guide myself. So here it is.
 
 **1. Pre-requisites**
 
@@ -15,7 +15,7 @@ and select VS2017.
 
 **2. Write a C-coded level 2 S function**
 
-A template of S function can be found here: https://www.mathworks.com/help/simulink/sfg/implementing-s-functions.html. Below is what you need to do:
+A template of S function can be found here: https://www.mathworks.com/help/simulink/sfg/templates-for-c-s-functions.html. Below is what you need to do:
   - change function name in #define S_FUNCTION_NAME
   - include #include <stdlib.h>, <stdio.h>, <math.h>, and "gurobi_c.h" (assuming you have gurobi_c.h in the same directory as the S function)
   - in mdlOutputs, that is where you can call Gurobi libraries like GRBenv, GRBemptyenv, etc. Assign y accordingly.
