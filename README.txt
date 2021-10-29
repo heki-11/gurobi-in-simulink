@@ -1,6 +1,9 @@
 *******************************************************************
 *   How to compile C-coded S function that uses Gurobi library    *
+*          By Heejin Kim (heejink@umich.edu)                      *
 *******************************************************************
+
+I was so frustrated that there was no clear step-by-step guide on how to use Gurobi libraries in Simulink on anywhere in the Internet (for hardware implementation settings). After spending whole 3 days, I just created a guide myself. So here it is.
 
 1. Pre-requisites
 Because the Gurobi library doesn't support MinGW compiler, you need to download VS 2017 build tools if you have not already, using this link: https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads. Then, make this the default compiler in MATLAB by commanding:
