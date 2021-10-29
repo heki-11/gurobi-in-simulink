@@ -39,4 +39,5 @@ MEX completed successfully.
 ```
 
 **5. Generate Simulink model that uses S function**
+
 Finally, you can use the "S function" block in Simulink that calls the S function. Write the S function name in the "Block Parameters" -> "S-function name" and run the model.
