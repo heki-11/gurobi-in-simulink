@@ -3,7 +3,7 @@
             By Heejin Kim (heejink@umich.edu)                      
 *******************************************************************
 
-I was so frustrated that there was no clear step-by-step guide on how to use Gurobi libraries in Simulink in anywhere on the Internet (for hardware implementation settings). After spending three whole days, I just created a guide myself. So here it is.
+I was so frustrated that there was no clear step-by-step guide on how to use Gurobi libraries in Simulink (for hardware implementation settings, so an M-coded S function would not work) anywhere on the Internet. After spending three whole days, I just created a guide myself. So here it is.
 
 **1. Pre-requisites**
 
