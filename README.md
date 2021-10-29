@@ -23,7 +23,7 @@ In "Model Settings" --> "Simulation Target" --> "Additional build information", 
 
 4. MEX S-function
 Use this command in MATLAB:
-*  mex -'L<path of gurobi library> -lgurobi_c++mdd2017 -lgurobi91 <s function name>.c
+*  mex -'L{path of gurobi library} -lgurobi_c++mdd2017 -lgurobi91 {s function name}.c
 If compiled successfully, you will get the message:
 *  Building with 'Microsoft Visual C++ 2017 (C)'.
 *  MEX completed successfully.
