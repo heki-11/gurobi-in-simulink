@@ -3,7 +3,7 @@
             By Heejin Kim (heejink@umich.edu)                      
 *******************************************************************
 
-I was so frustrated that there was no clear step-by-step guide on how to use Gurobi libraries in Simulink (for hardware implementation settings, so an M-coded S function nor MATLAB Fcn blocks would not typically work) anywhere on the Internet. After spending three whole days, I just created a guide myself. So here it is.
+I was so frustrated that there was no clear step-by-step guide on how to use Gurobi libraries in Simulink (for hardware implementation settings, so an M-coded S function nor MATLAB Fcn blocks would not typically work) anywhere on the Internet. After spending three whole days, I just created a guide by myself. So here it is.
 
 **1. Pre-requisites**
 
@@ -12,6 +12,8 @@ Because the Gurobi library doesn't support MinGW compiler, you need to download 
 mex -v -setup C  
 ```
 and select VS2017.
+
+**Note:** The compiler used in your hardware should also support VS2017 (or other architectures that MATLAB compiler supports, like CMake). If not, then there is NO way to implement Gurobi in your hardware because it will not be able to read the library.
 
 **2. Write a C-coded level 2 S function**
 
@@ -23,14 +25,14 @@ A template of S function can be found here: https://www.mathworks.com/help/simul
 **3. Configure Simulink**
 
 In Simulink, go to "Model Settings" --> "Simulation Target" --> "Additional build information". Then, you need to:
-  - include the path of the Gurobi library inside quotation marks "" in "Include directories"
-  - Include gurobi_c++mdd2017.dll (or whatever version of VS you are using) and gurobi91.lib in "Libraries"
+  - in "Include directories", include the path of the Gurobi library inside quotation marks ""
+  - in "Libraries", include gurobi_c++mdd2017.lib (or whatever version of VS you are using) and gurobi91.lib
 
 **4. MEX S-function**
 
-Use this command in MATLAB:
+Use this command in MATLAB to compile the S function (do not insert space between L/l and the library names):
 ```
-mex -'L{path of gurobi library} -lgurobi_c++mdd2017 -lgurobi91 {s function name}.c
+mex -'L{path of gurobi library}' -lgurobi_c++mdd2017 -lgurobi91 {s function name}.c
 ```
 If compiled successfully, you will get the message:
 ```
@@ -40,4 +42,4 @@ MEX completed successfully.
 
 **5. Generate Simulink model that uses S function**
 
-Finally, you can use the "S function" block in Simulink that calls the S function. Write the S function name in the "Block Parameters" -> "S-function name" and run the model. I recommend having some "printf" functions in S function so that you can check whether S function will actually run on hardware settings. If the Simulink does not print anything in the Diagnostics window but is running, then that means it can only compile in MATLAB setting but will give an error during hardware implementation because it is not referring to any libraries.
+Finally, you can use the "S function" block in Simulink. Write the S function name from Step 2 in the "Block Parameters" -> "S-function name" and run the model. I recommend having some "printf" functions in S function so that you can check whether S function will actually run on hardware settings. If the Simulink does not print anything in the Diagnostics window but is running, then that means it can only compile in MATLAB setting but will give an error during hardware implementation because it is not referring to any libraries.
