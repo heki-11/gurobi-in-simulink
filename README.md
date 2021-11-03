@@ -5,6 +5,8 @@
 
 I was so frustrated that there was no clear step-by-step guide on how to use Gurobi libraries in Simulink (for hardware implementation settings, so an M-coded S function nor MATLAB Fcn blocks would not typically work) anywhere on the Internet. After spending three whole days, I just created a guide by myself. So here it is.
 
+**Note:** The compiler used in your hardware should also support VS2017 (or other architectures that MATLAB compiler supports, like CMake). If not, then there is NO way to implement Gurobi in your hardware because it will not be able to link the library. Moreover, some hardwares might not be able to link any commercial library files. In that case, you'll need to have a C source code for the library and compile it using the hardware's own compiler.
+
 **1. Pre-requisites**
 
 Because the Gurobi library doesn't support MinGW compiler, you need to download VS 2017 build tools if you have not already, using this link: https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads. Then, make this the default compiler in MATLAB by commanding:
@@ -12,8 +14,6 @@ Because the Gurobi library doesn't support MinGW compiler, you need to download 
 mex -v -setup C  
 ```
 and select VS2017.
-
-**Note:** The compiler used in your hardware should also support VS2017 (or other architectures that MATLAB compiler supports, like CMake). If not, then there is NO way to implement Gurobi in your hardware because it will not be able to link the library. Moreover, some hardwares might not be able to link any commercial library files. In that case, you'll need to have a C source code for the library and compile it using the hardware's own compiler.
 
 **2. Write a C-coded level 2 S function**
 
