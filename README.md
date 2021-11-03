@@ -13,7 +13,7 @@ mex -v -setup C
 ```
 and select VS2017.
 
-**Note:** The compiler used in your hardware should also support VS2017 (or other architectures that MATLAB compiler supports, like CMake). If not, then there is NO way to implement Gurobi in your hardware because it will not be able to read the library.
+**Note:** The compiler used in your hardware should also support VS2017 (or other architectures that MATLAB compiler supports, like CMake). If not, then there is NO way to implement Gurobi in your hardware because it will not be able to link the library. Moreover, some hardwares might not be able to link any commercial library files. In that case, you'll need to have a C source code for the library and compile it using the hardware's own compiler.
 
 **2. Write a C-coded level 2 S function**
 
@@ -42,4 +42,5 @@ MEX completed successfully.
 
 **5. Generate Simulink model that uses S function**
 
-Finally, you can use the "S function" block in Simulink. Write the S function name from Step 2 in the "Block Parameters" -> "S-function name" and run the model. I recommend having some "printf" functions in S function so that you can check whether S function will actually run on hardware settings. If the Simulink does not print anything in the Diagnostics window but is running, then that means it can only compile in MATLAB setting but will give an error during hardware implementation because it is not referring to any libraries.
+Finally, you can use the "S function" block in Simulink. Write the S function name from Step 2 in the "Block Parameters" -> "S-function name" and run the model. I recommend having some "printf" functions in S function so that you can check whether S function will actually run on hardware settings. If the Simulink does not print anything in the Diagnostics window but is running, then that means it can only compile in MATLAB setting but will give an error during hardware implementation because of linking error.
+
